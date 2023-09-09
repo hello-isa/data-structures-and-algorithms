@@ -1,29 +1,31 @@
 // Create a C program that lets you insert an element at the first position of the linked list if it does not exist in the list
-#include<stdio.h>
-#include<string.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 
-typedef struct {
+typedef struct
+{
     int ID;
-    char  LN[16], FN[24], MI;  // Last name, First name, Middle Initial
-    char course[8];          
+    char LN[16], FN[24], MI; // Last name, First name, Middle Initial
+    char course[8];
     int yearLevel;
 } Studrec;
 
-typedef struct node {
+typedef struct node
+{
     Studrec stud;
     struct node *link;
-} *StudList;   // Definition of the List
+} *StudList; // Definition of the List
 
 // Function declaration
-void insertFirstUnique(StudList *listMember, Studrec newStud);
 void displayList(StudList listMember);
 
-int main(){
-    StudList studOne = (StudList) malloc(sizeof(struct node));
-    StudList studTwo = (StudList) malloc(sizeof(struct node));
-    StudList studThree = (StudList) malloc(sizeof(struct node));
-    
+int main()
+{
+    StudList studOne = (StudList)malloc(sizeof(struct node));
+    StudList studTwo = (StudList)malloc(sizeof(struct node));
+    StudList studThree = (StudList)malloc(sizeof(struct node));
+
     studOne->stud.ID = 11111;
     strcpy(studOne->stud.LN, "Carlos");
     strcpy(studOne->stud.FN, "Sainz");
@@ -67,34 +69,44 @@ int main(){
 }
 
 // Function definition
-void insertFirstUnique(StudList *listMember, Studrec newStud){
+void insertFirstUnique(StudList *listMember, Studrec newStud)
+{
     StudList current = NULL;
 
     // Traverse through the list and check if the element is unique and list is not NULL
-    for(current = *listMember; current != NULL && current->stud.ID != newStud.ID; current = current->link){}
+    for (current = *listMember; current != NULL && current->stud.ID != newStud.ID; current = current->link)
+    {
+    }
 
     // If the traversal reached the end of the list meaning the element does not exist in the list
-    if(current == NULL){
+    if (current == NULL)
+    {
         // Since the element is unique, you can create a new node
-        StudList newNode = (StudList) malloc(sizeof(struct node));
+        StudList newNode = (StudList)malloc(sizeof(struct node));
 
-        // To check if the node is successfully created 
+        // To check if the node is successfully created
         if (newNode == NULL)
         {
             printf("Allocation failed.\n");
-        }else{
+        }
+        else
+        {
             newNode->stud = newStud;
             newNode->link = *listMember;
             *listMember = newNode;
         }
-    }else{
+    }
+    else
+    {
         printf("Element is not unique.\n");
     }
 }
 
-void displayList(StudList listMember) {
+void displayList(StudList listMember)
+{
     printf("Student List:\n");
-    while (listMember != NULL) {
+    while (listMember != NULL)
+    {
         printf("ID: %d, Name: %s %s, Course: %s\n", listMember->stud.ID, listMember->stud.FN, listMember->stud.LN, listMember->stud.course);
         listMember = listMember->link;
     }
