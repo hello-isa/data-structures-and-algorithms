@@ -36,7 +36,7 @@ int main()
     printf("Node 4 address: %p\n", nodeFour);
 
     // Function call
-    deleteElem(&nodeOne, 'Z');
+    deleteElem(&nodeOne, 'c');
     displayList(nodeOne);
 
     return 0;
@@ -59,7 +59,7 @@ void deleteElem(LIST *A, char elem)
     {
     }
 
-    if (current != NULL)
+    if (*current != NULL)
     {
         LIST temp;
         temp = *current;
@@ -68,6 +68,6 @@ void deleteElem(LIST *A, char elem)
     }
     else
     {
-        printf("Matched element found.");
+        printf("Matched element found.\n");
     }
 }
