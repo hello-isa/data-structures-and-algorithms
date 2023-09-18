@@ -17,8 +17,10 @@ int main()
     return 0;
 }
 
-void displayBitPattern(int x)
+void displayBitPattern(int x) // Size of data type is not fixed, depends on the architecture and compiler used (e.g. int can be 2 or 4 bytes)
 {
+    // sizeof(int): size in bytes
+    // 8 bits in 1 bytes, converts the size from bytes to bits
     int bits = sizeof(int) * 8;
     int n;
 
