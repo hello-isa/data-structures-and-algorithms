@@ -1,0 +1,38 @@
+#include <stdio.h>
+
+// Function declaration
+void displayBitPattern(int x);
+
+int main()
+{
+    int num = 2;
+
+    // Function call
+    displayBitPattern(num);
+
+    return 0;
+}
+
+void displayBitPattern(int x)
+{
+    int bits = sizeof(int) * 8;
+    int i;
+
+    for (i = bits - 1; i >= 0; i--)
+    {
+
+        if ((x >> i) & 1)
+        {
+            printf("1");
+        }
+        else
+        {
+            printf("0");
+        }
+
+        if (i % 4 == 0)
+        {
+            printf(" ");
+        }
+    }
+}
