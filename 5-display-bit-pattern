@@ -1,3 +1,6 @@
+// Create a C program that will display the bit pattern of the given integer. Display it into 4 bits.
+// It should be compiler independent and will use bitwise and shift operators.
+
 #include <stdio.h>
 
 // Function declaration
@@ -5,8 +8,9 @@ void displayBitPattern(int x);
 
 int main()
 {
-    int num = 2;
+    int num = 16;
 
+    printf("The bit pattern of %d is: ", num);
     // Function call
     displayBitPattern(num);
 
@@ -16,13 +20,15 @@ int main()
 void displayBitPattern(int x)
 {
     int bits = sizeof(int) * 8;
-    int i;
+    int n;
 
-    for (i = bits - 1; i >= 0; i--)
+    // Traverse each bit of the given integer, starting from the leftmost bit to the right most bit
+    for (n = bits - 1; n >= 0; n--)
     {
-
-        if ((x >> i) & 1)
+        // Shift the bits to the right by n positions
+        if ((x >> n) & 1)
         {
+            // If both are 1 in binary values, it will print 1 or true
             printf("1");
         }
         else
@@ -30,7 +36,8 @@ void displayBitPattern(int x)
             printf("0");
         }
 
-        if (i % 4 == 0)
+        // To make it into 4-bit
+        if (n % 4 == 0)
         {
             printf(" ");
         }
