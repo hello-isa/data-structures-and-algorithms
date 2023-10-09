@@ -25,8 +25,8 @@ int main()
 {
     LIST A;
 
+    printf("Initialize empty list:\n");
     initialize(&A);
-    printf("Initialize empty array:\n");
     display(A);
 
     printf("\nAfter insertion:\n");
