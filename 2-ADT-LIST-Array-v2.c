@@ -20,8 +20,8 @@ void initialize(LIST *L);             // Initialize empty list
 void display(LIST L);                 // Display the elements of the list
 void insert(LIST *L, int x, int pos); // Insert an element at any position in the list
 void delete(LIST *L, int pos);        // Delete at any position in the list
-boolean isMember(LIST L, int y);      // Check if an element is a member of the list
 void deleteOcc(LIST *L, int x);       // Delete all the occurrences of an element in the list
+boolean isMember(LIST L, int y);      // Check if an element is a member of the list
 
 int main()
 {
@@ -43,13 +43,13 @@ int main()
     delete (&A, 1);
     display(A);
 
-    int x = 11;
-    (isMember(A, x) == T) ? printf("\n%d is member of the list.\n", x) : printf("\n%d is NOT member of the list.\n", x);
-
     int y = 11;
     printf("\nAfter deleting all occurrence of %d:\n", y);
     deleteOcc(&A, y);
     display(A);
+
+    int z = 33;
+    (isMember(A, z) == T) ? printf("\n%d is member of the list.\n", z) : printf("\n%d is NOT member of the list.\n", z);
 
     return 0;
 }
@@ -110,6 +110,26 @@ void delete(LIST *L, int pos)
     }
 }
 
+void deleteOcc(LIST *L, int x)
+{
+    int n, j;
+
+    for (n = j = 0; n < (*L)->count; n++)
+    {
+        if ((*L)->elem[n] == x)
+        {
+            // Increment 'j' to keep track of how many 'x' elements encountered
+            j++;
+        }
+        else
+        {
+            // If the current element is not equal to 'x', copy the current element to the modified list considering the 'j' count
+            (*L)->elem[n - j] = (*L)->elem[n]; // Shifting
+        }
+    }
+    (*L)->count = (*L)->count - j;
+}
+
 boolean isMember(LIST L, int y)
 {
     int n;
@@ -122,19 +142,4 @@ boolean isMember(LIST L, int y)
         }
     }
     return F;
-}
-
-void deleteOcc(LIST *L, int x)
-{
-    int n, j = 0;
-
-    for (n = 0; n < (*L)->count; n++)
-    {
-        if ((*L)->elem[n] == x)
-        {
-            (*L)->elem[n] = (*L)->elem[n + 1];
-            j++;
-        }
-    }
-    (*L)->count = (*L)->count - j;
 }
