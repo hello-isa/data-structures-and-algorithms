@@ -3,7 +3,7 @@
 #define MAX 5
 
 // Definition
-typedef struct node
+typedef struct list
 {
     int elem[MAX];
     int count;
@@ -25,7 +25,7 @@ boolean isMember(LIST L, int y);      // Check if an element is a member of the 
 
 int main()
 {
-    LIST A = (LIST)malloc(sizeof(struct node));
+    LIST A = (LIST)malloc(sizeof(struct list));
 
     initialize(&A);
     printf("Initialize empty list:\n");
