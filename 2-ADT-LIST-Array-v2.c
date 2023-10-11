@@ -25,7 +25,7 @@ boolean isMember(LIST L, int y);      // Check if an element is a member of the 
 
 int main()
 {
-    LIST A = (LIST)malloc(sizeof(struct list));
+    LIST A;
 
     initialize(&A);
     printf("Initialize empty list:\n");
@@ -57,6 +57,7 @@ int main()
 // Function definition
 void initialize(LIST *L)
 {
+    (*L) = (LIST)malloc(sizeof(struct list));
     (*L)->count = 0; // Since it is a double pointer, you need to dereference first before accessing
 }
 
