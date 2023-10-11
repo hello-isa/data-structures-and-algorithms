@@ -94,14 +94,14 @@ void delete(LIST *L, char x)
 {
     int n, j;
     int pos;
-    int found = 0; // Initialize found flag to 0 or False
+    int found = F; // Initialize found flag to False
 
     for (n = 0; n < L->count; n++)
     {
         if (L->elemPtr[n] == x)
         {
             pos = n;   // Get the position of the matched 'x' element
-            found = 1; // Found flag is 1 or True
+            found = T; // Found flag is True
         }
     }
 
