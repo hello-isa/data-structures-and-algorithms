@@ -1,3 +1,4 @@
+// Version 1: List is a structure containing an array and variable count
 #include <stdio.h>
 #define MAX 5
 

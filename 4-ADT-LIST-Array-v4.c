@@ -1,3 +1,4 @@
+// Version 4: List is a pointer to a structure containing a pointer to the 1st element of a dynamic array, and variable count
 #include <stdio.h>
 #include <stdlib.h>
 #define MAX 5
