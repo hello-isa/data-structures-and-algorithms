@@ -10,10 +10,13 @@ typedef struct
     int top;
 } STACK;
 
-void initializeStack(STACK *S);
-void display(STACK S);
-void PUSH(char x, STACK *S);
-void POP(STACK *S);
+void initializeStack(STACK *S); // Initialize empty stack
+void display(STACK S);          // Display the content of the stack
+void PUSH(char x, STACK *S);    // Insert element into the stack
+void POP(STACK *S);             // Delete an element from the stack
+int TOP(STACK S);               // Return the index of the top element in the stack
+int isEmpty(STACK S);           // Check if the stack is empty
+int isFull(STACK S);            // Check if the stack is full
 
 int main()
 {
@@ -31,9 +34,18 @@ int main()
     PUSH('K', &A);
     display(A);
 
+    printf("\nTop: %d\n", TOP(A));
+
     printf("\nAfter popping:\n");
     POP(&A);
+    POP(&A);
     display(A);
+
+    printf("\nTop: %d\n", TOP(A));
+
+    (isEmpty(A) == 1) ? printf("\nStack is empty.\n") : printf("\nStack is NOT empty.\n");
+
+    (isFull(A) == 1) ? printf("\nStack is full.\n") : printf("\nStack is NOT full.\n");
 
     return 0;
 }
@@ -51,10 +63,9 @@ void display(STACK S)
     }
     else
     {
-        int n;
-        for (n = S.top; n < MAX; n++)
+        for (; S.top < MAX; S.top++)
         {
-            printf("%d [%c]\n", n, S.elem[n]);
+            printf("%d [%c]\n", S.top, S.elem[S.top]);
         }
     }
 }
@@ -63,8 +74,8 @@ void PUSH(char x, STACK *S)
 {
     if (S->top != -1)
     {
-        S->top--;
         S->elem[S->top] = x;
+        S->top--;
     }
     else
     {
@@ -74,5 +85,23 @@ void PUSH(char x, STACK *S)
 
 void POP(STACK *S)
 {
-    S->top++;
+    if (S->top != MAX - 1)
+    {
+        S->top++;
+    }
+}
+
+int TOP(STACK S)
+{
+    return S.top;
+}
+
+int isEmpty(STACK S)
+{
+    (S.top == MAX) ? 1 : 0;
+}
+
+int isFull(STACK S)
+{
+    (S.top == 0) ? 1 : 0;
 }
